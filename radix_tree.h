@@ -16,11 +16,12 @@ class RadixTree{
         void print();
         bool search(string name);
         bool startWith(string name);
+        Node *root = new Node(false);
     private:
-        Node* root = new Node(false);
+
         char CASE;
 
-        void printUtil();
+        void printUtil(Node* node, string &name);
 };
 
 
