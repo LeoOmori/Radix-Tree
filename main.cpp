@@ -11,11 +11,11 @@ int main(){
 
     tree->insert("amante");
     tree->insert("amar");
+    tree->insert("a");
     tree->insert("thereafter");
     tree->insert("therein");
     tree->insert("this");
 
 
-    // cout << tree->root->children[0]->edgeLabel[17];
     tree->print();
 }

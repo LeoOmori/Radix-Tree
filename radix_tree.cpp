@@ -33,7 +33,7 @@ void RadixTree::insert(string word){
                 aux->children[index] = newChild;
                 newChild->children[(int)remainingLabel[0] - (int)CASE] = prt;
                 newChild->edgeLabel[(int)remainingLabel[0] - (int)CASE] = remainingLabel;
-                delete prt;
+
             }else{ // insert partial matching words
                 string remainingLabel = label.substr(j);
                 Node* newChild = new Node(false);
@@ -47,7 +47,6 @@ void RadixTree::insert(string word){
                 newChild->edgeLabel[(int)remainingWord[0] - (int)CASE] = remainingWord;
                 newChild->children[(int)remainingWord[0] - (int)CASE] = new Node(true);
 
-                delete temp;
             }
             return;
         }
@@ -70,14 +69,13 @@ void RadixTree::printUtil(Node* node, string &str){
     if(node->isEnd){
         cout << str << endl; 
     }
-    for (int i = 0; i < 26; ++i) {
+    for (int i = 0; i < 26; i++) {
         if (node->edgeLabel[i] != "") {
             int length = str.size();
 
             str = str.append(node->edgeLabel[i]);
             printUtil(node->children[i], str);
             str = str.substr(0,length);
-
         }
     }
 }
