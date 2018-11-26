@@ -15,7 +15,7 @@ class RadixTree{
         void insert(string name);
         void print();
         bool search(string name);
-        bool startWith(string name);
+        void startWith(string name);
         Node *root = new Node(false);
     private:
 

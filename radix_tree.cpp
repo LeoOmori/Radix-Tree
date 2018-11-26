@@ -79,3 +79,38 @@ void RadixTree::printUtil(Node* node, string &str){
         }
     }
 }
+
+void RadixTree::startWith(string word){
+int i = 0;
+    Node* aux = root;
+    string rootPrefix = "";
+
+    while(i < word.size() && aux->edgeLabel[(int)word[i] - (int)CASE] != ""){
+        int index =(int)word[i] - (int)CASE, j = 0;
+        string label = aux->edgeLabel[index];  
+        while(j < label.size() && i < word.size() && (int)label[j] == (int)word[i]){
+            ++i;
+            ++j;
+        }
+        if(j == label.size()){
+            rootPrefix.append(aux->edgeLabel[index]);
+            aux = aux->children[index];
+        }else{
+            if(i == word.size()){
+                cout << "aqui" << endl;
+                printUtil(aux, rootPrefix);
+
+            }else{ // insert partial matching words
+                cout <<"prefix not found !!" << endl;
+            }
+            return;
+        }
+    }
+    if(i < word.size()){
+        cout << "prefix not found !!" << endl;
+    }else{
+        printUtil(aux, rootPrefix);
+        cout << "aqui" << endl;
+    }
+        
+}
