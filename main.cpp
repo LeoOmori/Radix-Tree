@@ -9,14 +9,12 @@ using namespace std;
 int main(){
     RadixTree* tree = new RadixTree();
 
-    tree->insert("face");
     tree->insert("facebook");
+    tree->insert("face");
     tree->insert("facebookfoda");
-    tree->insert("facebookfodazika");
-
-
-
-    // tree->print();
+    tree->insert("fa");
+    
     cout << endl;
-    tree->startWith("facebookfod");
+    tree->startWith("faceb");
+
 }

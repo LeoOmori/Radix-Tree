@@ -3,6 +3,7 @@
 #include <string>
 #include <algorithm>
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 
@@ -81,7 +82,7 @@ void RadixTree::printUtil(Node* node, string &str){
 }
 
 void RadixTree::startWith(string word){
-int i = 0;
+    int i = 0;
     Node* aux = root;
     string rootPrefix = "";
 
@@ -93,11 +94,12 @@ int i = 0;
             ++j;
         }
         if(j == label.size()){
-            rootPrefix.append(aux->edgeLabel[index]);
+            rootPrefix = rootPrefix.append(aux->edgeLabel[index]);
             aux = aux->children[index];
         }else{
+            int change = 0;
             if(i == word.size()){
-                cout << "aqui" << endl;
+
                 printUtil(aux, rootPrefix);
 
             }else{ // insert partial matching words
@@ -110,7 +112,27 @@ int i = 0;
         cout << "prefix not found !!" << endl;
     }else{
         printUtil(aux, rootPrefix);
-        cout << "aqui" << endl;
     }
         
 }
+
+void RadixTree::insertFile(RadixTree *tree, string path){
+    ifstream inFile(path);
+    string line;
+    if(inFile.is_open()){
+        while(getline(inFile,line)){
+            if(line != ""){
+                tree->insert(line);
+            }
+        }
+        inFile.close();
+    }
+
+  else{
+    cout << "Unable to open file!!"; 
+  }
+
+    
+}
+
+

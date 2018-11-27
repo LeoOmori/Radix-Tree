@@ -17,6 +17,7 @@ class RadixTree{
         bool search(string name);
         void startWith(string name);
         Node *root = new Node(false);
+        void insertFile(RadixTree *tree,string path);
     private:
 
         char CASE;
