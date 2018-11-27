@@ -23,6 +23,7 @@ class RadixTree{
         char CASE;
 
         void printUtil(Node* node, string &name);
+        void printPrefix(Node* node, string &name, bool i);
 };
 
 

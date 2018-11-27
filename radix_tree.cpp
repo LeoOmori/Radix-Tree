@@ -99,8 +99,9 @@ void RadixTree::startWith(string word){
         }else{
             int change = 0;
             if(i == word.size()){
-
-                printUtil(aux, rootPrefix);
+                rootPrefix = rootPrefix.append(aux->edgeLabel[index]);
+                aux = aux->children[index];
+                printPrefix(aux, rootPrefix, true);
 
             }else{ // insert partial matching words
                 cout <<"prefix not found !!" << endl;
@@ -111,7 +112,7 @@ void RadixTree::startWith(string word){
     if(i < word.size()){
         cout << "prefix not found !!" << endl;
     }else{
-        printUtil(aux, rootPrefix);
+        printPrefix(aux, rootPrefix, true);
     }
         
 }
@@ -135,4 +136,24 @@ void RadixTree::insertFile(RadixTree *tree, string path){
     
 }
 
+void RadixTree::printPrefix(Node* node, string &str, bool firstIteration){
+    if(node->isEnd && firstIteration == false){
+        cout << str <<endl;
+
+    }
+    for (int i = 0; i < 26; i++) {
+        if (node->edgeLabel[i] != "") {
+            int length = str.size();
+
+            str = str.append(node->edgeLabel[i]);
+            // cout << i << endl;
+            printPrefix(node->children[i], str, false);
+            str = str.substr(0,length);
+        }
+    }
+}
+
+bool RadixTree::search(string word){
+    
+}
 
