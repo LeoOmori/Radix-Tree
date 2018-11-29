@@ -154,6 +154,27 @@ void RadixTree::printPrefix(Node* node, string &str, bool firstIteration){
 }
 
 bool RadixTree::search(string word){
+    int i = 0;
+    Node* aux = root;
+
+    while(i < word.size() && aux->edgeLabel[(int)word[i] - (int)CASE] != ""){
+        int index =(int)word[i] - (int)CASE, j = 0;
+        string label = aux->edgeLabel[index];  
+        while(j < label.size() && i < word.size()){
+            if((int)label[j] != (int)word[i]){
+                return false;
+            }
+            ++i;
+            ++j;
+        }
+        if(j == label.size() && i <= word.size()){
+            aux = aux->children[index];
+        }else{
+            cout << "aqui";
+            return false;
+        }
+    }
     
+    return i == word.size() && aux->isEnd == true;
 }
 

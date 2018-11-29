@@ -9,10 +9,17 @@ using namespace std;
 int main(){
     RadixTree* tree = new RadixTree();
     string x;
+
+    
+
     tree->insertFile(tree,"bancoPalavras.txt");
     cout << "pesquise uma palavra" << endl;
     cin >> x;
-    cout << "talvez você queiria digitar:"<< endl;
-    tree->startWith(x);
+    // cout << "talvez você queiria digitar:"<< endl;
+    bool y = tree->search(x);
+    cout << y << endl;
+
+
+
 
 }
