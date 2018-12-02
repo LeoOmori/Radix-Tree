@@ -11,6 +11,6 @@ int main(){
 
     tree->insertFile(tree,"bancoNome.txt");
     cout << "hi" << endl;
-    tree->print();
+    tree->printSubString("lomeu");
 
 }
