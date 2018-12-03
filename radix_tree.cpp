@@ -101,7 +101,11 @@ int RadixTree::startWith(string word){
             if(i == word.size()){
                 rootPrefix = rootPrefix.append(aux->edgeLabel[index]);
                 aux = aux->children[index];
-                printPrefix(aux, rootPrefix, true);
+                bool isWord = false;
+                if(aux->isEnd == true && aux->children[index] == NULL){
+                    isWord = true;
+                }
+                printPrefix(aux, rootPrefix, false, isWord);
 
             }else{ 
                 // cout <<"prefix not found !!" << endl;
@@ -114,7 +118,7 @@ int RadixTree::startWith(string word){
         // cout << "prefix not found !!" << endl;
         return 0;
     }else{
-        printPrefix(aux, rootPrefix, true);
+        printPrefix(aux, rootPrefix, false, false);
         return 1;
     }
         
@@ -139,8 +143,8 @@ void RadixTree::insertFile(RadixTree *tree, string path){
     
 }
 
-void RadixTree::printPrefix(Node* node, string &str, bool firstIteration){
-    if(node->isEnd && firstIteration == false){
+void RadixTree::printPrefix(Node* node, string &str, bool firstIteration, bool full){
+    if((node->isEnd && firstIteration == false) || (full == true)){
         cout << str <<endl;
 
     }
@@ -150,7 +154,7 @@ void RadixTree::printPrefix(Node* node, string &str, bool firstIteration){
 
             str = str.append(node->edgeLabel[i]);
             // cout << i << endl;
-            printPrefix(node->children[i], str, false);
+            printPrefix(node->children[i], str, false, false);
             str = str.substr(0,length);
         }
     }
@@ -186,9 +190,9 @@ void RadixTree::printSubString(string word){
 }
 
 void RadixTree::printUtilSubString(Node* node, string &str,string word){
-    if(node->isEnd){
+    if(node->isEnd == true){
         size_t found = str.find(word);
-        if(found != 0){
+        if(found != string::npos){
             cout << str << endl;
         }
     }
@@ -197,7 +201,7 @@ void RadixTree::printUtilSubString(Node* node, string &str,string word){
             int length = str.size();
 
             str = str.append(node->edgeLabel[i]);
-            printUtil(node->children[i], str);
+            printUtilSubString(node->children[i], str, word);
             str = str.substr(0,length);
         }
     }

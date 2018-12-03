@@ -25,7 +25,7 @@ class RadixTree{
 
         void printUtilSubString(Node* node, string &str, string word);
         void printUtil(Node* node, string &name);
-        void printPrefix(Node* node, string &name, bool i);
+        void printPrefix(Node* node, string &name, bool i,bool full);
 };
 
 

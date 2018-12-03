@@ -25,8 +25,7 @@ int main(){
             cout << "SEM RESULTADO!!" << endl;
             cout << "------------VOCE TALVEZ QUERIA PESQUISAR:------------:" << endl; 
             int ex = tree->startWith(x);
-            if(ex != 1){ 
-                cout << ex << endl;
+            if(ex == 0){ 
                 cout << "NAO EXISTEM PALAVRAS SIMILARES NO BANCO DE PALAVRAS!!" << endl;
 
                 cout << endl;

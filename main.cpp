@@ -10,7 +10,6 @@ int main(){
     RadixTree* tree = new RadixTree();
 
     tree->insertFile(tree,"bancoNome.txt");
-    cout << "hi" << endl;
-    tree->printSubString("lomeu");
+    tree->printSubString("mir");
 
 }
