@@ -108,7 +108,7 @@ int RadixTree::startWith(string word){
                 printPrefix(aux, rootPrefix, false, isWord);
 
             }else{ 
-                // cout <<"prefix not found !!" << endl;
+
                 return 0;
             }
             return 1;
@@ -184,16 +184,21 @@ bool RadixTree::search(string word){
     return i == word.size() && aux->isEnd == true;
 }
 
-void RadixTree::printSubString(string word){
+int RadixTree::printSubString(string word){
     string str;
-    printUtilSubString(root, str, word);
+    int x = 0;
+    printUtilSubString(root, str, word, x);
+    if(x == 0){
+        cout << "NAO EXISTEM PALAVRAS PARA ESSA SUBSTRING!!" << endl;
+    }
 }
 
-void RadixTree::printUtilSubString(Node* node, string &str,string word){
+void RadixTree::printUtilSubString(Node* node, string &str,string word, int &x){
     if(node->isEnd == true){
         size_t found = str.find(word);
         if(found != string::npos){
             cout << str << endl;
+            x = 1;
         }
     }
     for (int i = 0; i < 26; i++) {
@@ -201,7 +206,7 @@ void RadixTree::printUtilSubString(Node* node, string &str,string word){
             int length = str.size();
 
             str = str.append(node->edgeLabel[i]);
-            printUtilSubString(node->children[i], str, word);
+            printUtilSubString(node->children[i], str, word, x);
             str = str.substr(0,length);
         }
     }

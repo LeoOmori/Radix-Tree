@@ -26,7 +26,6 @@ int main(){
             cout << "------------VOCE TALVEZ QUERIA PESQUISAR:------------:" << endl; 
             int ex = tree->startWith(x);
             if(ex != 1){ 
-                cout << ex << endl;
                 cout << "NAO EXISTEM CONTATOS SIMILARES NO SEU CELULAR!!" << endl;
 
                 cout << endl;

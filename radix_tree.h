@@ -18,12 +18,12 @@ class RadixTree{
         int startWith(string name);
         Node *root = new Node(false);
         void insertFile(RadixTree *tree,string path);
-        void printSubString(string word);
+        int printSubString(string word);
     private:
 
         char CASE;
 
-        void printUtilSubString(Node* node, string &str, string word);
+        void printUtilSubString(Node* node, string &str, string word, int &x);
         void printUtil(Node* node, string &name);
         void printPrefix(Node* node, string &name, bool i,bool full);
 };
